@@ -1,0 +1,104 @@
+<head>
+  <title>ΛΧΑ Assassins</title>
+</head>
+
+<body>
+{{> layout}}
+</body>
+
+<template name="layout">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">ΛΧΑ Assassins</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="container">
+    <div class="row">
+      {{#if isAdmin}}
+        {{> adminContent}}
+      {{else}}
+        {{> userContent}}
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="userContent">
+<div class="col-xs-12">
+  {{#if currentUser}}
+    <div class="jumbotron">
+      <h1>Hello, {{username}}.</h1>
+        {{#if gameStarted}}
+          {{#if dead}}
+            <p>You are dead. Better luck next time.</p>
+          {{else}}
+            {{#if lastOneStanding}}
+              <p>Congratulations! You have won!</p>
+            {{else}}
+              <p>Your mission is simple. Assassinate {{target}}.</p>
+              <p>When the deed is done, press this button:</p>
+              <div class="row">
+                <div class="col-xs-6 col-xs-offset-3 text-center">
+                  {{> assassinateButton}}
+                </div>
+              </div>
+              <p>In order to prove you've assassinated your target, you'll need to get their secret phrase. <em>Your</em> secret phrase is <strong>{{phrase}}</strong>. If you are assassinated, this is the phrase you must give to your assassin.</p>
+            {{/if}}
+          {{/if}}
+        {{else}}
+          <p>The game has not begun yet. Soon...</p>
+        {{/if}}
+    </div>
+  {{else}}
+    {{> loginButton}}
+  {{/if}}
+</div>
+</template>
+
+<template name="adminContent">
+<div class="col-xs-12">
+  <div class="jumbotron">
+    <h1>Welcome, game master.</h1>
+    <div class="row">
+      <p>To go to the admin panel, <a href="/admin">click here.</a></p>
+    {{#if gameStarted}}
+      <p>The following {{livingUsers.length}} users are still in the game: </p>
+      <ol class="list-group">
+      {{#each livingUsers}}
+          <li class="list-group-item">{{profile.name}}</li>
+      {{/each}}
+      </ol>
+    {{else}}
+    <p>The game has not yet started. Press the button to let the games begin.</p>
+      <div class="col-xs-6 col-xs-offset-3 text-center">
+        {{> gameStartButton}}
+      </div>
+    {{/if}}
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="gameStartButton">
+  <button class="btn btn-warning btn-lg btn-block">START</button>
+</template>
+
+<template name="assassinateButton">
+  <button class="btn btn-warning btn-lg btn-block">It is done!</button>
+</template>
+
+<template name="loginButton">
+  <img class="login-button" src="login-with-facebook.png">
+</template>
+
+
