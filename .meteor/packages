@@ -17,4 +17,5 @@ iron:layout
 houston:admin
 service-configuration
 mizzao:bootboxjs
+force-ssl
 
