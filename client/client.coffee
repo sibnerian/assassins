@@ -1,6 +1,16 @@
 Meteor.subscribe 'Players'
 Meteor.subscribe 'Game'
 
+getTitlePrefix = ->
+  if Meteor.settings?.public?.titlePrefix?
+    unsanitize(Meteor.settings.public.titlePrefix) + ' '
+  else
+    ''
+
+Meteor.startup ->
+  document.title = getTitlePrefix() + 'Assassins'
+
+
 Template.layout.helpers
   username: ->
     Meteor.user()?.services?.facebook?.first_name || Meteor.user()?.profile.name
@@ -10,6 +20,9 @@ Template.layout.helpers
 
   loggedIn: ->
     Meteor.user()?
+
+  prefix: ->
+    getTitlePrefix()
 
 Template.adminContent.helpers
   gameStarted: ->

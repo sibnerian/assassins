@@ -2,5 +2,8 @@
   "fbAppId": "YOUR_APP_ID",
   "fbSecret": "YOUR_APP_SECRET",
   "adminName": "Ian Sibner",
-  "phrases": ["alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","phi","chi","psi","omega"]
+  "phrases": ["alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","phi","chi","psi","omega"],
+  "public": {
+    "titlePrefix": "Spoon"
+  }
 }
