@@ -26,7 +26,7 @@ Meteor.methods
       $set:
         target: targetUser.target
         targetName: targetUser.targetName
-        $inc: {kills: 1}
+      $inc: {kills: 1}
     Meteor.users.update targetUser._id,
       $set:
         alive: false
