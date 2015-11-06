@@ -7,7 +7,7 @@ Meteor.methods
       _.each shuffled, (user, index) ->
         target = (index + 1) % shuffled.length
         phrase = phrases[index % phrases.length]
-        Meteor.users.update {_id: user._id}, {$set: {kills: '0', index: index, target: target, alive: true, secretPhrase: phrase}}
+        Meteor.users.update {_id: user._id}, {$set: {kills: 0, index: index, target: target, alive: true, secretPhrase: phrase}}
       _.each Meteor.users.find({isAdmin: {$ne: true}}).fetch(), (user) ->
         targetUser = Meteor.users.findOne {index: user.target}
         Meteor.users.update user._id,
@@ -25,7 +25,7 @@ Meteor.methods
       $set:
         target: targetUser.target
         targetName: targetUser.targetName
-        kills: ('' + (Number(user.kills) + 1))
+      $inc: {kills: 1}
     Meteor.users.update targetUser._id,
       $set:
         alive: false

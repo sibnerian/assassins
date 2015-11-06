@@ -44,6 +44,9 @@ Template.userContent.helpers
   dead: ->
     Meteor.user()?.alive == false
 
+  kills: ->
+    Meteor.user()?.kills + ''
+
   phrase: ->
     Meteor.user()?.secretPhrase
 
