@@ -39,11 +39,12 @@
     <div class="jumbotron">
       <h1>Hello, {{username}}.</h1>
         {{#if gameStarted}}
+          <p>You have {{kills}} kills.</p>
           {{#if dead}}
             <p>You are dead. Better luck next time.</p>
           {{else}}
             {{#if lastOneStanding}}
-              <p>Congratulations! You have won!</p>
+              <p>Congratulations! You're the last man standing!</p>
             {{else}}
               <p>Your mission is simple. Assassinate {{target}}.</p>
               <p>When the deed is done, press this button:</p>

@@ -13,6 +13,7 @@ Meteor.methods
         Meteor.users.update user._id,
           $set:
             targetName: targetUser.profile.name
+            kills: 0
 
   assassinate: (phrase) ->
     user = Meteor.users.findOne @userId
@@ -25,6 +26,7 @@ Meteor.methods
       $set:
         target: targetUser.target
         targetName: targetUser.targetName
+        $inc: {kills: 1}
     Meteor.users.update targetUser._id,
       $set:
         alive: false
