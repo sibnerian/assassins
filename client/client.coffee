@@ -44,8 +44,12 @@ Template.userContent.helpers
   dead: ->
     Meteor.user()?.alive == false
 
-  kills: ->
-    Meteor.user()?.kills + ''
+  print_kills: ->
+    kills = Meteor.user()?.kills
+    if kills?
+      return if kills is 1 then '1 kill' else "#{kills} kills"
+    else
+      return 'undefined'
 
   phrase: ->
     Meteor.user()?.secretPhrase

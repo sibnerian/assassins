@@ -39,7 +39,7 @@
     <div class="jumbotron">
       <h1>Hello, {{username}}.</h1>
         {{#if gameStarted}}
-          <p>You have {{kills}} kills.</p>
+          <p>You have {{print_kills}}.</p>
           {{#if dead}}
             <p>You are dead. Better luck next time.</p>
           {{else}}
