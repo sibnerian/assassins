@@ -25,7 +25,6 @@
   <div class="container">
     <div class="row">
       {{#if isAdmin}}
-      {{print_kills}}
         {{> adminContent}}
       {{else}}
         {{> userContent}}
@@ -70,7 +69,7 @@
 <template name="adminContent">
 <div class="col-xs-12">
   <div class="jumbotron">
-    <h1>Welcome, game master.</h1>
+    <h1>Welcome, game master.{{print_kills}}</h1>
     <div class="row">
       <p>To go to the admin panel, <a href="/admin">click here.</a></p>
     {{#if gameStarted}}

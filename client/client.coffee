@@ -31,6 +31,13 @@ Template.adminContent.helpers
   livingUsers: ->
     Meteor.users.find({alive: true}, {sort: {index: 'asc'}}).fetch()
 
+  print_kills: ->
+    kills = Meteor.user()?.kills
+    if kills?
+      return if Number(kills) is 1 then '1 kill' else "#{kills} kills"
+    else
+      return 'undefined'
+
 Template.userContent.helpers
   gameStarted: ->
     Game.find().count() > 0
@@ -47,7 +54,7 @@ Template.userContent.helpers
   print_kills: ->
     kills = Meteor.user()?.kills
     if kills?
-      return if kills is 1 then '1 kill' else "#{kills} kills"
+      return if Number(kills) is 1 then '1 kill' else "#{kills} kills"
     else
       return 'undefined'
 
